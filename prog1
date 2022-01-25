@@ -1,0 +1,62 @@
+/* fig.:lab3.cpp **********************************************/
+/********************************************************************/
+/* Filename:lab3.cpp ******************************************/
+/* Abstract: Sample C++ - program ***********************************/
+/* Description: program does maths and writing output data into the .txt file ***********************************************************/
+/* Version:1.0 ******************************************************/
+/* Creation Date: 08.12.2021 ****************************************/
+/* Author: Ekaterina Komarova ****************************************/
+/********************************************************************/
+
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+int main() {
+
+	printf_s(
+			"***********************************************************\n\
+			*Nizhniy Novgorod Technical University*\n\
+			* Study work number 3. *\n\
+			*Performed student 21IVT-2 Komarova Ekaterina*\n\
+			***********************************************************\n"
+			);
+
+
+	int i{ 0 };
+	
+	double x[31][2] = {}, g{ 0.1 }, mmax{ 0.0 }, mmin{ 1.0 };
+
+	cout << setw(6) << "x |"
+		<< setw(15) << "y |"
+		<< setw(12) << "&x |"
+		<< setw(12) << "&y |"
+		<< "\n---------------------------------------------\n";
+
+	while (i < 31) {
+		x[i][0] = g;
+		x[i][1] = 4 - exp(pow(-x[i][0],2));
+		if (x[i][1] >= mmax) {
+			mmax = x[i][1];
+		}
+		if (x[i][1] <= mmin) {
+			mmin = x[i][1];
+		}
+		cout << setw(5) << x[i][0] << "|"
+			<< setw(14) << x[i][1] << "|"
+			<< setw(11) << &x[i][0] << "|"
+			<< setw(11) << &x[i][1] << "|"
+			<< endl;
+		g += 0.1;
+		i += 1;
+		
+	}
+	cout << "---------------------------------------------\n"
+		<< "Max: " << mmax
+		<< "\nMin: " << mmin
+		<< endl;
+
+	return 0;
+}
